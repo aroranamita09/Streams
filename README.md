@@ -78,11 +78,9 @@ public class Main {
         TreeMap<Character,Integer> map =new TreeMap<>();
         for( char c : charArray)
             map.put( c,map.getOrDefault(c,0)+1);
-
 //        Arrays.stream(charArray).collect(Collectors.groupingBy(Function.identity(),Collectors.counting())).entrySet().stream()
 //                .sorted(Map.Entry.<Character, Integer> comparingByValue())
 //                .forEach((fruit)->System.out.println(fruit.getKey() + " -> " + fruit.getValue()));
-
         //list.stream().reduce( (a,b)->a*b).get();
         Map<Integer,Employee> employe= employeeList.stream().collect(groupingBy(e->e.getSalary(),collectingAndThen(maxBy(Comparator.comparingInt(e-> e.getSalary())), Optional::get)));
         for(Map.Entry<Integer,Employee> e: employe.entrySet())
